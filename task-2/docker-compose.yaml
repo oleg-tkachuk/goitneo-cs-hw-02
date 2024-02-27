@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  python-app:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres-db
+
+  postgres-db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: hw02
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 567234
