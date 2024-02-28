@@ -20,11 +20,10 @@ function ping_sites(){
 
     for site in "${!var}"; do
         curl  -IsL ${site} --connect-timeout ${curl_timeout} \
-	| awk '$0~/^HTTP\/2/' \
+        | awk '$0~/^HTTP\/2/' \
         | grep -q -E '200|403' \
-	&& echo "+ $(date) : ${site} is UP" \
-        || echo "- $(date) : ${site} is DOWN" \
-        | tee -a ${log_file}
+        && echo "+ $(date) : ${site} is UP" \
+        || echo "- $(date) : ${site} is DOWN"
     done | tee -a ${log_file}
 }
 
